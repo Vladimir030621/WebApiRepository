@@ -15,6 +15,11 @@ namespace Application.BackgroundServices
             _serviceProvider = serviceProvider;
         }
        
+        /// <summary>
+        /// Run background process as a scoped service
+        /// </summary>
+        /// <param name="stoppingToken"></param>
+        /// <returns></returns>
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             using (IServiceScope scope = _serviceProvider.CreateScope())

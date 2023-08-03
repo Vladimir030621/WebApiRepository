@@ -29,11 +29,17 @@ namespace Application.BackgroundServices
             _mediator = mediator;
         }
 
+        /// <summary>
+        /// Background service to get Currency rates from third-party Api and store them in DB
+        /// </summary>
+        /// <param name="stoppingToken"></param>
+        /// <returns></returns>
         public async Task RunBackgroundWorkAsync(CancellationToken stoppingToken)
         {
+            _logger.LogInformation("Currency rate background service -> START");
             while (!stoppingToken.IsCancellationRequested)
             {
-                _logger.LogInformation("Currency rate background service start");
+                _logger.LogInformation("Currency rate background service -> Begin process");
                 try
                 {
                     string today = DateHelper.FormatDate(DateTime.Now);

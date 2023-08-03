@@ -9,5 +9,6 @@ using System.Threading.Tasks;
 namespace Application.Queries
 {
     public class GetStoredCurrencyRatesQuery : IRequest<IEnumerable<Currencyrate>>
-    { }
+    {
+    }
 }

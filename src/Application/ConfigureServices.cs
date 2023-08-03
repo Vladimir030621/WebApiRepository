@@ -11,6 +11,9 @@ using Infrastructure.Repositories;
 using Application.Behaviors;
 using FluentValidation;
 using Application.BackgroundServices.Interfaces;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Logging;
+using static CommonServices.Helpers.Constants;
 
 namespace Application
 {
@@ -62,6 +65,14 @@ namespace Application
             services.AddScoped<IScopedProcessingService, CurrencyRateScopedProcessingService>();
 
             return services;
+        }
+
+        public static WebApplication AddLoggingExtension(this WebApplication app, WebApplicationBuilder builder)
+        {
+            var loggerFactory = app.Services.GetService<ILoggerFactory>();
+            loggerFactory.AddFile(builder.Configuration["Logging:LoggingPath"].ToString());
+
+            return app;
         }
     }
 }

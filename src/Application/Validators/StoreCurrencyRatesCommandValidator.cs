@@ -1,13 +1,8 @@
 ﻿using Application.Commands;
-using Application.Validators;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Application.Services
+
+namespace Application.Validators
 {
     public class StoreCurrencyRatesCommandValidator : AbstractValidator<StoreCurrencyRatesCommand>
     {

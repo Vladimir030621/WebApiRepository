@@ -35,8 +35,7 @@ namespace WebApi
 
             app.UseMiddleware<ExceptionMiddleware>();
 
-            var loggerFactory = app.Services.GetService<ILoggerFactory>();
-            loggerFactory.AddFile(builder.Configuration["Logging:LoggingPath"].ToString());
+            app.AddLoggingExtension(builder);
 
             app.Run();
         }
