@@ -13,7 +13,7 @@ using FluentValidation;
 using Application.BackgroundServices.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Logging;
-using static CommonServices.Helpers.Constants;
+
 
 namespace Application
 {

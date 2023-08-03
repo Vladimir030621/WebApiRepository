@@ -48,7 +48,8 @@ namespace Application.BackgroundServices
                     var storedCurrencyRatesKeys = storedCurrencyRates.Select(c => c.Key).Distinct();
 
                     var currencyRates = await _mediator.Send(new GetCurrencyRatesQuery(_options?.Value?.Type ?? OFFICE, today));
-
+                    
+                    // Filter and store only new rates
                     var currencyRatesToAdd = currencyRates.Where(c => !storedCurrencyRatesKeys.Contains(c.Key));
 
                     await _mediator.Send(new StoreCurrencyRatesCommand(currencyRatesToAdd));
