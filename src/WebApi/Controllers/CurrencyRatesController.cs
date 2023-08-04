@@ -28,9 +28,7 @@ namespace WebApi.Controllers
         {
             var currencyRates = await _mediator.Send(new GetStoredCurrencyRatesQuery());
 
-            var result = new ResultModel<IEnumerable<Currencyrate>>().Success(currencyRates);
-
-            return _apiResponseService.GetResponse(result);
+            return _apiResponseService.GetResponse(currencyRates);
         }
     }
 }

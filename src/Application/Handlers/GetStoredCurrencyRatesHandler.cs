@@ -1,4 +1,5 @@
 ﻿using Application.Queries;
+using CommonServices.Models;
 using Infrastructure.Data;
 using Infrastructure.Interfaces;
 using MediatR;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Application.Handlers
 {
-    public class GetStoredCurrencyRatesHandler : IRequestHandler<GetStoredCurrencyRatesQuery, IEnumerable<Currencyrate>>
+    public class GetStoredCurrencyRatesHandler : IRequestHandler<GetStoredCurrencyRatesQuery, ResultModel<IEnumerable<Currencyrate>>>
     {
         private readonly ICurrencyRateRepository _currencyRateRepository;
 
@@ -19,9 +20,10 @@ namespace Application.Handlers
             _currencyRateRepository = currencyRateRepository;
         }
 
-        public async Task<IEnumerable<Currencyrate>> Handle(GetStoredCurrencyRatesQuery request, CancellationToken cancellationToken)
+        public async Task<ResultModel<IEnumerable<Currencyrate>>> Handle(GetStoredCurrencyRatesQuery request, CancellationToken cancellationToken)
         {
-            return await _currencyRateRepository.GetAll();
+            var currencyRates = await _currencyRateRepository.GetAll();
+            return new ResultModel<IEnumerable<Currencyrate>>().Success(currencyRates);
         }
     }
 }

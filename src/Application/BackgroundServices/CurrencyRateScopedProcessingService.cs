@@ -45,7 +45,7 @@ namespace Application.BackgroundServices
                     string today = DateHelper.FormatDate(DateTime.Now);
 
                     var storedCurrencyRates = await _mediator.Send(new GetStoredCurrencyRatesQuery());
-                    var storedCurrencyRatesKeys = storedCurrencyRates.Select(c => c.Key).Distinct();
+                    var storedCurrencyRatesKeys = storedCurrencyRates.Result.Select(c => c.Key).Distinct();
 
                     var currencyRates = await _mediator.Send(new GetCurrencyRatesQuery(_options?.Value?.Type ?? OFFICE, today));
                     
